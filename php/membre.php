@@ -5,18 +5,23 @@ session_start();
 // Inclut la connexion PDO à la base de données
 require_once 'config.php';
     
-$membres = []; // Initialise un tableau vide pour y stocker les membres
-
+$membres = [];
+$limit = 12;
+$page  = max(1, intval($_GET['page'] ?? 1));
 
 try {
-    // Prépare une requête SQL qui sélectionne les champs nécessaires pour l'affichage des membres
-    $stmt = $pdo->query("SELECT id, pseudo, photo_profil, style_jeu, age, genre, biographie FROM utilisateurs ORDER BY date_inscription DESC");
-    if ($stmt) {
-        $membres = $stmt->fetchAll(PDO::FETCH_ASSOC);  // Récupère tous les résultats sous forme de tableau associatif
-    }
+    $total      = (int) $pdo->query("SELECT COUNT(*) FROM utilisateurs")->fetchColumn();
+    $totalPages = max(1, (int) ceil($total / $limit));
+    $page       = min($page, $totalPages);
+    $offset     = ($page - 1) * $limit;
+
+    $stmt = $pdo->prepare("SELECT id, pseudo, photo_profil, style_jeu, age, genre, biographie FROM utilisateurs ORDER BY date_inscription DESC LIMIT :lim OFFSET :off");
+    $stmt->bindValue(':lim', $limit, PDO::PARAM_INT);
+    $stmt->bindValue(':off', $offset, PDO::PARAM_INT);
+    $stmt->execute();
+    $membres = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-    // Affiche une erreur si la connexion ou la requête échoue
-    echo "Erreur lors de la récupération des membres : " . $e->getMessage();
+    $totalPages = 1;
 }
 ?>
 
@@ -93,6 +98,18 @@ try {
 
 <!-- Grille où les cartes membres seront ajoutées -->
 <section class="membre-grid" aria-label="Liste des membres"></section>
+
+<?php if ($totalPages > 1): ?>
+<nav class="pagination" aria-label="Pagination des membres">
+    <?php if ($page > 1): ?>
+        <a href="?page=<?= $page - 1 ?>" class="page-btn">← Précédent</a>
+    <?php endif; ?>
+    <span class="page-info">Page <?= $page ?> / <?= $totalPages ?></span>
+    <?php if ($page < $totalPages): ?>
+        <a href="?page=<?= $page + 1 ?>" class="page-btn">Suivant →</a>
+    <?php endif; ?>
+</nav>
+<?php endif; ?>
 
 <footer role="contentinfo" aria-label="Pied de page">
     <p>&copy; 2024 Team HAKAI - Tous droits réservés.</p>

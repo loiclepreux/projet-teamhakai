@@ -43,15 +43,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $photo = $_FILES['photo_profil'] ?? null;
     $filename = $utilisateur['photo_profil'];  // Par défaut : on garde l’image actuelle.
 
-    if ($photo && $photo['error'] === 0) {
-        $upload_dir = '../php/profils/';
-        if (!is_dir($upload_dir)) mkdir($upload_dir);  // 📁 Crée le dossier si inexistant.
-        $ext = pathinfo($photo['name'], PATHINFO_EXTENSION);
-        $filename = 'profil_' . uniqid() . '.' . $ext; // 🔧 Génère un nom unique.
-        move_uploaded_file($photo['tmp_name'], $upload_dir . $filename); // 📥 Déplace le fichier dans le dossier.
+    $genres_valides     = ['homme', 'femme'];
+    $plateformes_valides = ['xbox', 'play', 'pc'];
+
+    if (!in_array($genre, $genres_valides) || !in_array($plateforme, $plateformes_valides)) {
+        $_SESSION['message'] = "Valeur invalide pour le genre ou la plateforme.";
+        header('Location: modifier_profils.php');
+        exit();
     }
 
-    // ✅ Validation des données (pseudo, email, mot de passe).
+    if ($photo && $photo['error'] === 0) {
+        $allowedTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+        $mimeType = mime_content_type($photo['tmp_name']);
+        $maxSize  = 2 * 1024 * 1024;
+
+        if (!in_array($mimeType, $allowedTypes) || $photo['size'] > $maxSize) {
+            $_SESSION['message'] = "Image invalide ou trop volumineuse (max 2 Mo).";
+            header('Location: modifier_profils.php');
+            exit();
+        }
+
+        $upload_dir = '../php/profils/';
+        if (!is_dir($upload_dir)) mkdir($upload_dir);
+        $ext = pathinfo($photo['name'], PATHINFO_EXTENSION);
+        $filename = 'profil_' . uniqid() . '.' . $ext;
+        move_uploaded_file($photo['tmp_name'], $upload_dir . $filename);
+    }
+
     $update = $pdo->prepare("UPDATE utilisateurs SET pseudo = ?, email = ?, mot_de_passe = ?, genre = ?, age = ?, biographie = ?, style_jeu = ?, plateforme = ?, photo_profil = ? WHERE id = ?");
     // 🛠️ Prépare la requête de mise à jour.
     $update->execute([$pseudo, $email, $mot_de_passe, $genre, $age, $biographie, $style_jeu, $plateforme, $filename, $id]);

@@ -57,6 +57,16 @@ if ($photo['error'] === 0) {
         }
 }
 
+$genres_valides     = ['homme', 'femme'];
+$plateformes_valides = ['xbox', 'play', 'pc'];
+$styles_valides     = ['rusheur', 'campeur', 'sniper', 'tacticien', 'ninja', 'support'];
+
+if (!in_array($genre, $genres_valides) || !in_array($plateforme, $plateformes_valides) || !in_array($style_jeu, $styles_valides)) {
+        $_SESSION['message'] = "Valeur invalide pour genre, plateforme ou style de jeu.";
+        header('Location: ../index.php');
+        exit();
+}
+
 if (!empty($pseudo) && !empty($email) && !empty($mot_de_passe)) {
         try {
 

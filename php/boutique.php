@@ -14,9 +14,10 @@ require_once 'config.php';
 try {
     $stmt = $pdo->query("SELECT * FROM articles ORDER BY date_ajout DESC"); // Requête : récupère tous les articles triés par date d'ajout (du plus récent au plus ancien)
     $articles = $stmt->fetchAll(PDO::FETCH_ASSOC); // On stocke les résultats sous forme de tableau associatif
-} catch (PDOException $e) { // Si une erreur se produit
-    echo "Erreur : " . $e->getMessage(); // On affiche l'erreur (à éviter en production)
-    die(); // Et on arrête l’exécution
+} catch (PDOException $e) {
+    $_SESSION[‘message’] = "Une erreur est survenue. Veuillez réessayer.";
+    header(‘Location: ../index.php’);
+    exit();
 }
 ?>
 

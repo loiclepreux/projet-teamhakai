@@ -393,7 +393,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (pathname.endsWith("/php/boutique.php")) {
 
-      const panier = {}; // Objet pour stocker les articles ajoutés au panier.
+      const CART_KEY = 'hakai_panier';
+      const panier = JSON.parse(localStorage.getItem(CART_KEY) || '{}');
 
       // Sélections des éléments du DOM.
       const notif = document.querySelector(".notif"); // Pastille de notification sur l'icône panier.
@@ -429,6 +430,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const total = Object.values(panier).reduce((acc, item) => acc + item.quantite, 0);
         notif.textContent = total;
         notif.style.opacity = total > 0 ? "1" : "0";
+        localStorage.setItem(CART_KEY, JSON.stringify(panier));
     }
 
     // 🧾 Met à jour le tableau affichant les articles du panier.
@@ -520,12 +522,19 @@ document.addEventListener("DOMContentLoaded", () => {
     // 📤 Envoi du formulaire de commande.
     form?.addEventListener("submit", (e) => {
     const total = parseFloat(totalPriceElement.textContent);
-    
+
     if (isNaN(total) || total <= 0) {
-        e.preventDefault(); // Bloque uniquement si le panier est vide
+        e.preventDefault();
         showMessage("Votre panier est vide", "#FF4C4C");
+    } else {
+        localStorage.removeItem(CART_KEY);
     }
-    // Sinon : pas de e.preventDefault() = le formulaire est envoyé normalement
 });
+
+    // Restaure l'affichage si un panier était sauvegardé.
+    if (Object.keys(panier).length > 0) {
+        updateNotif();
+        updateTable();
+    }
     }
 });

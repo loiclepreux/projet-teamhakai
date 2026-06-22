@@ -159,3 +159,31 @@ MEMBRES - GRILLE D'AFFICHAGE + CARTES UTILISATEUR
     color: #ff004c;
     cursor: pointer;
 }
+
+/* === PAGINATION === */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.page-btn {
+    background-color: #ff004c;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+}
+
+.page-btn:hover {
+    background-color: #c0003a;
+}
+
+.page-info {
+    color: white;
+    font-size: 0.95rem;
+}
