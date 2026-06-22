@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 $_SESSION['login_attempts'] = 0; // 🔄 Reset des tentatives après succès.
 
-                if ($_POST['rapel'] == 'on') {
+                if (isset($_POST['rapel']) && $_POST['rapel'] === 'on') {
                     // ✅ Si la case "Se souvenir de moi" est cochée, on crée un cookie.
                     setcookie('remember_me', $user['pseudo'], time() + (86400 * 365), "/"); // 1 an de validité.
                 }

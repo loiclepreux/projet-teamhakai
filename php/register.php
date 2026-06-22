@@ -65,7 +65,9 @@ if (!empty($pseudo) && !empty($email) && !empty($mot_de_passe)) {
         $check->execute([':pseudo' => $pseudo, ':email' => $email]);
 
         if ($check->fetch()) {
-                echo "Un compte avec ce pseudo ou cet email existe déjà.";
+                $_SESSION['message'] = "Un compte avec ce pseudo ou cet email existe déjà.";
+                header('Location: ../index.php');
+                exit();
         } else {
 
                 // 🔐 Hachage du mot de passe.
@@ -81,10 +83,14 @@ if (!empty($pseudo) && !empty($email) && !empty($mot_de_passe)) {
                 exit();
         }
         } catch (PDOException $e) {
-        echo "Erreur BDD : " . $e->getMessage();
+            $_SESSION['message'] = "Une erreur est survenue lors de l'inscription. Veuillez réessayer.";
+            header('Location: ../index.php');
+            exit();
         }
 } else {
-        echo "Tous les champs obligatoires doivent être remplis.";
+        $_SESSION['message'] = "Tous les champs obligatoires doivent être remplis.";
+        header('Location: ../index.php');
+        exit();
 }
 }
 ?>

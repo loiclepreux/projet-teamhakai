@@ -67,11 +67,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['user']['id'])) {
 
             // 🔄 Si l'utilisateur veut supprimer la vidéo.
             if (isset($_POST['supprimer'])) {
-                $stmt = $pdo->prepare("DELETE FROM videos WHERE url = :url AND id_utilisateur = :id");
-                $stmt->execute([
-                    ':url' => $video_url,
-                    ':id' => $_SESSION['id']
-                ]);
+                $role = $_SESSION['user']['role'] ?? 'user';
+                if ($role === 'admin') {
+                    $stmt = $pdo->prepare("DELETE FROM videos WHERE url = :url");
+                    $stmt->execute([':url' => $video_url]);
+                } else {
+                    $stmt = $pdo->prepare("DELETE FROM videos WHERE url = :url AND id_utilisateur = :id");
+                    $stmt->execute([':url' => $video_url, ':id' => $_SESSION['id']]);
+                }
                 $_SESSION['message'] = "🗑 Vidéo supprimée avec succès.";
                 header('Location: bibliotheque.php');
                 exit();
