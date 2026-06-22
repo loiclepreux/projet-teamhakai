@@ -1,0 +1,10 @@
+{
+    "name": "teamhakai/site",
+    "description": "Site communautaire Team HAKAI - Call of Duty",
+    "require": {
+        "dompdf/dompdf": "^2.0"
+    },
+    "config": {
+        "vendor-dir": "dompdf/vendor"
+    }
+}

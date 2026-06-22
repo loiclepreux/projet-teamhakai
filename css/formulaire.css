@@ -1,0 +1,83 @@
+/* =============================
+PAGE FORMULAIRE (Ajouter / Modifier)
+============================= */
+
+/* === BODY GLOBAL === */
+body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Segoe UI', sans-serif;
+    color: #fff;
+}
+
+/* === CONTENEUR PRINCIPAL DU FORMULAIRE === */
+.form-container {
+    width: 500px;
+    height: 90%;
+    margin: 30px auto;
+    padding: 30px;
+    background: rgba(0, 0, 0, 0.85);
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+}
+
+/* === TITRE DU FORMULAIRE === */
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #ff3399;
+}
+
+/* === LABELS DES CHAMPS === */
+.form-container label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+/* === CHAMPS DE SAISIE === */
+.form-container input[type="text"],
+.form-container input[type="number"],
+.form-container input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background: #333;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+/* === BOUTON DE VALIDATION === */
+.form-container button {
+    width: 100%;
+    padding: 12px;
+    background-color: #ff3399;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+.form-container button:hover {
+    background-color: #cc0077;
+}
+
+/* === BOUTON DE RETOUR === */
+.retour-btn {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 10px 16px;
+    background-color: #444;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+.retour-btn:hover {
+    background-color: #00bbbb;
+}

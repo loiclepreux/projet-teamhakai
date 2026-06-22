@@ -1,0 +1,99 @@
+/* =============================
+PAGE DE RÉCUPÉRATION DE MDP
+============================= */
+
+/* === BODY GLOBAL === */
+body {
+    width: 100vw;
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #fff;
+    background-image: url(../img/orage.png);
+    background-size: contain;
+}
+
+/* === TITRE PRINCIPAL === */
+h1, h2 {
+    text-align: center;
+    color: #ff004c;
+    margin-bottom: 2.5rem;
+    margin-top: 3rem;
+}
+
+.retour {
+    text-align: center;
+    margin-top: 2rem;
+    color: black;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.retour:hover {
+    color: #ff004c;
+    text-decoration: underline;
+}
+
+p {
+    text-align: center;
+    color: #fff;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+/* === FORMULAIRE PRINCIPAL === */
+form {
+    max-width: 600px;
+    margin: auto;
+    background-color: #1e1e1e;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #ff004c50;
+}
+
+/* === LABELS DU FORMULAIRE === */
+form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+/* === CHAMPS DU FORMULAIRE === */
+form input[type="text"],
+form input[type="email"] {
+    width: 100%;
+    padding: 0.7rem;
+    margin-bottom: 1.2rem;
+    border-radius: 8px;
+    border: 1px solid #444;
+    background-color: #2a2a2a;
+    color: #fff;
+}
+
+/* === BOUTON DE VALIDATION === */
+form button {
+    display: block;
+    width: 100%;
+    padding: 0.9rem;
+    background-color: #ff004c;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #e60045;
+}
+
+/* === MESSAGE DE CONFIRMATION === */
+.message-confirmation {
+    background-color: #14532d;
+    color: #a7f3d0;
+    padding: 1rem;
+    margin: 1rem auto;
+    max-width: 600px;
+    border-radius: 8px;
+    text-align: center;
+}

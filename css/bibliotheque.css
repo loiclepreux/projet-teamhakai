@@ -1,0 +1,244 @@
+/* =====================================================
+BIBLIOTHÈQUE VISUEL - FORMULAIRE + AFFICHAGE VIDÉOS
+====================================================== */
+
+/* === ZONE TITRE & BOUTON FORMULAIRE === */
+.titre-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 10px;
+    background: linear-gradient(90deg, #000, #ff004c, #000);
+}
+
+#toggle-form {
+    color: white;
+    font-size: clamp(16px, 2vw, 22px);
+    font-weight: bold;
+    background: transparent;
+    border: none;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+#toggle-form:hover {
+    color: black;
+}
+
+/* === FORMULAIRE FLOTANT D'AJOUT / SUPPRESSION === */
+#video-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px;
+    background: rgba(20, 20, 20, 0.95);
+    border-radius: 10px;
+    border: 2px solid #ff004c;
+    width: 70%;
+    max-width: 600px;
+    margin: 20px auto;
+    box-shadow: 0 0 20px rgba(255, 0, 76, 0.4);
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    z-index: 2000;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+#video-form.active {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#video-form input {
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid black;
+    font-size: 16px;
+    width: 100%;
+}
+
+#video-form button {
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #ff004c;
+    color: black;
+    border: 2px solid white;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+#video-form button:hover {
+    background-color: black;
+    color: white;
+}
+
+#video-form .close-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    color: red;
+    border: 2px solid red;
+    border-radius: 50%;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+
+#video-form .close-btn:hover {
+    background-color: red;
+    color: white;
+}
+
+/* === GRILLE PRINCIPALE DE LA BIBLIOTHÈQUE === */
+.bibliotheque-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+    max-width: 100%;
+    margin: 0 auto;
+    justify-items: center;
+}
+
+/* === CARTE VIDÉO === */
+.bibliotheque {
+    background-color: black;
+    border: 5px solid #ff004c;
+    border-radius: 10px;
+    position: relative;
+    padding: 10px;
+    height: auto;
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.bibliotheque:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 25px rgba(255, 0, 76, 0.5);
+    text-decoration: none !important;
+}
+
+/* === LECTEUR VIDÉO === */
+.video {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: transparent;
+}
+
+.video video,
+.video iframe {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: none;
+    border-radius: 10px;
+}
+
+/* === INFOS SOUS CHAQUE VIDÉO === */
+.infos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.rens {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.pseudo,
+.date {
+    flex: 1;
+    text-align: center;
+    padding: 5px 10px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px rgb(2, 2, 2);
+    font-size: 17px;
+}
+
+.pseudo::before {
+    content: "\1F464"; /* 👤 */
+    margin-right: 8px;
+}
+
+.date::before {
+  content: "\1F4C5"; /* 📅 */
+    
+}
+
+/* === LIKE / INTERACTION === */
+.like-container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: white;
+    font-size: 18px;
+    justify-content: center;
+    cursor: pointer;
+    margin: 8px 0;
+}
+
+.like-icon {
+    transition: transform 0.2s;
+}
+
+.like-container:hover .like-icon {
+    transform: scale(1.2);
+    color: #ff004c;
+}
+
+/* === CASE À COCHER DE SÉLECTION === */
+.select-checkbox {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: white;
+    padding: 5px;
+    border-radius: 50%;
+    z-index: 10;
+}
+
+.delete-checkbox {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}

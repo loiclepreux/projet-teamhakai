@@ -1,0 +1,375 @@
+/* ===============================
+  FICHIER RESPONSIVE GLOBAL
+  regroupe les media queries communes
+================================ */
+/* ---------- max 1800px ---------- */
+@media (max-width: 1800px) {
+  .descriptif {
+    font-size: 14px;
+  }
+}
+/* ---------- max 1700px ---------- */
+@media (max-width: 1700px) {
+  .membre-grid,
+  .bibliotheque-grid {
+    margin-top: 0%;
+  }
+
+  .principale {
+    margin-top: 5%;
+  }
+}
+
+/* ---------- max 1500px ---------- */
+@media (max-width: 1500px) {
+  .descriptif, .genre {
+    font-size: 12px;
+  }
+
+}
+/* ---------- max 1400px ---------- */
+@media (max-width: 1400px) {
+  .animation-balle {
+    display: none;
+  }
+  h1,
+  h2 {
+    font-size: clamp(20px, 4vw, 50px);
+    text-align: center;
+  }
+
+  .principale {
+    margin-top: 5%;
+  }
+
+  .seconnecter,
+  .accueil,
+  .membres,
+  .bibliotheque,
+  .boutique {
+    font-size: 15px;
+  }
+  .boutique-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    margin-top: 30px;
+  }
+  .membre-grid {
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    margin-top: 10px;
+    gap: 16px;
+  }
+  .bibliotheque-grid {
+    margin-top: 30px;
+  }
+    .descriptif, .genre {
+    font-size: 10px;
+  }
+}
+
+/* ---------- max 1270px ---------- */
+@media (max-width: 1270px) {
+ .descriptif, .genre {
+    font-size: 14px;
+  }
+}
+/* ---------- max 1100px ---------- */
+@media (max-width: 1100px) {
+  .bibliotheque-grid {
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    margin-top: 30px;
+  }
+
+  .principale {
+    margin-top: 5%;
+  }
+  .membre-grid {
+    margin-top: 30px;
+  }
+  .descriptif, .genre {
+    font-size: 12px;
+  }
+}
+
+/* ---------- max 1000px ---------- */
+@media (max-width: 1000px) {
+  h1 {
+    font-size: clamp(22px, 3.5vw, 40px);
+  }
+  .article img {
+    width: 200px;
+    height: 200px;
+  }
+
+  .principale {
+    margin-top: 10%;
+  }
+
+  #menu1 {
+    justify-content: space-between;
+    padding-left: 3%;
+    padding-right: 3%;
+  }
+
+  .notif {
+    top: 7%;
+    right: 3%;
+  }
+  #Pan {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    height: 10vh;
+  }
+  .membre-grid {
+    margin-top: 50px;
+  }
+  .bibliotheque-grid {
+    margin-top: 50px;
+  }
+  .boutique-grid {
+    margin-top: 50px;
+  }
+  .descriptif, .genre {
+    font-size: 11px;
+  }
+}
+/* ---------- max 900px ---------- */
+@media (max-width:900px) {
+  .confirmation-message {
+    left: 84%;
+  }
+}
+/* ---------- max 855px ---------- */
+@media (max-width: 855px) {
+  .descriptif, .genre {
+    font-size: 16px;
+  }
+}
+/* ---------- max 768px ---------- */
+@media (max-width: 768px) {
+  .photo {
+    width: 70%;
+  }
+  .descriptif {
+    width: 100%;
+  }
+  .panier {
+    color: black;
+    font-size: 1.7em;
+  }
+
+  .menuburger {
+    display: block;
+    z-index: 1001;
+  }
+
+  .entête {
+    justify-content: space-around;
+  }
+
+  .principale {
+    margin-top: 15%;
+  }
+  h1 {
+    text-align: center;
+  }
+
+  #menu1 {
+    width: 60%;
+    height: auto;
+    flex-direction: column;
+    position: fixed;
+    top: 140px;
+    left: -100%;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #000;
+    z-index: 1000;
+    transition: left 0.5s ease-in-out;
+    border-radius: 8px;
+    padding: 20px 0;
+  }
+
+  #menu1.show {
+    left: 0;
+  }
+  .seconnecter,
+  .accueil,
+  .membres,
+  .boutique,
+  .bibliotheque {
+    width: 100%;
+    font-size: 15px;
+    font-weight: bold;
+    font-style: italic;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    user-select: none;
+    padding: 10px 0;
+  }
+
+  .accueil:hover,
+  .membres:hover,
+  .boutique:hover,
+  .bibliotheque:hover {
+    color: #ff004c;
+    text-shadow: 0 0 10px #ff004c;
+  }
+
+  .membre-grid {
+    margin-top: 60px;
+  }
+  .bibliotheque-grid {
+    margin-top: 80px;
+  }
+  .boutique-grid {
+    margin-top: 80px;
+  }
+}
+
+/* ---------- max 710px ---------- */
+@media (max-width: 710px) {
+  .descriptif, .genre {
+    font-size: 14px;
+  }
+}
+
+/* ---------- max 600px ---------- */
+@media (max-width: 600px) {
+  h1,
+  h2 {
+    font-size: clamp(20px, 3.5vw, 32px);
+    margin: 0 auto 8%;
+    text-align: center;
+  }
+
+  .principale {
+    margin-top: 20%;
+  }
+  .menuburger {
+    display: block;
+    z-index: 1001;
+  }
+
+  #menu1 {
+    width: 60%;
+    height: auto;
+    flex-direction: column;
+    position: fixed;
+    top: 140px;
+    left: -100%;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #000;
+    z-index: 1000;
+    transition: left 0.5s ease-in-out;
+    border-radius: 8px;
+    padding: 20px 0;
+  }
+
+  #menu1.show {
+    left: 0;
+  }
+  .seconnecter,
+  .accueil,
+  .membres,
+  .boutique,
+  .bibliotheque {
+    width: 100%;
+    font-size: 15px;
+    font-weight: bold;
+    font-style: italic;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    user-select: none;
+    padding: 10px 0;
+  }
+
+  .accueil:hover,
+  .membres:hover,
+  .boutique:hover,
+  .bibliotheque:hover {
+    color: #ff004c;
+    text-shadow: 0 0 10px #ff004c;
+  }
+
+  .membre-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    margin-top: 80px;
+    gap: 12px;
+  }
+
+  .bibliotheque-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    margin-top: 80px;
+  }
+
+  .pseudo,
+  .info,
+  .profil {
+    margin-top: 10px;
+  }
+
+  .photo {
+    width: 85%;
+  }
+  .descriptif, .genre {
+    font-size: 12px;
+  }
+}
+/* ---------- max 572px ---------- */
+@media (max-width: 572px) {
+.renseignement {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    }
+}
+/* ---------- max 530px ---------- */
+@media (max-width: 530px) {
+ .descriptif, .genre {
+    font-size: 11px;
+  }
+  .confirmation-message {
+    width: 15vw;
+  }
+ }
+/* ---------- max 480px ---------- */
+@media (max-width: 480px) {
+  h1,
+  h2 {
+    font-size: clamp(18px, 4vw, 30px);
+    text-align: center;
+  }
+
+  .principale {
+    margin-top: 28%;
+  }
+
+  .accueil,
+  .membres,
+  .boutique {
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  .photo {
+    width: 50%;
+  }
+
+  .notif {
+    top: 52.5%;
+    width: 25px;
+    height: 25px;
+    font-size: 12px;
+  }
+  .bibliotheque-grid {
+    margin-top: 80px;
+  }
+}
