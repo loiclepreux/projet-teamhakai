@@ -24,7 +24,7 @@ try {
     // 🔁 Récupère toutes les vidéos sous forme de tableau associatif.  
     $videos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-    // ❌ Affiche une erreur s’il y a un problème avec la base de données.
+    // ❌ Affiche une erreur s'il y a un problème avec la base de données.
     echo "Erreur : " . $e->getMessage();
 }
 
@@ -36,12 +36,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['user']['id'])) {
         die("Erreur CSRF : requête invalide."); // 🚨 Bloque si token invalide.
     }
 
-    $video_url = trim($_POST['video_url'] ?? ''); // 🧼 Nettoie l’URL (trim).
-    if (!empty($video_url) && filter_var($video_url, FILTER_VALIDATE_URL)) { // ✅ Vérifie que c’est bien une URL valide.
+    $video_url = trim($_POST['video_url'] ?? ''); // 🧼 Nettoie l'URL (trim).
+    if (!empty($video_url) && filter_var($video_url, FILTER_VALIDATE_URL)) { // ✅ Vérifie que c'est bien une URL valide.
 
         // 📏 Longueur maximale de l'url.
         if (strlen($video_url) > 255) {
-            $erreur = "L’URL est trop longue.";
+            $erreur = "L'URL est trop longue.";
         } else {
 
             // 🔍 Vérifie si la vidéo existe déjà dans la BDD.
@@ -94,7 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['user']['id'])) {
 <meta name="csrf-token" content="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
 <title>Team HAKAI - Bibliothèque</title>
 
-<!-- ✅ Icône de l’onglet (favicon) -->
+<!-- ✅ Icône de l'onglet (favicon) -->
 <link rel="icon" href="../img/favicon.ico" type="image/x-icon" />
 
 <!-- ✅ Feuilles de styles du site -->
@@ -188,7 +188,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['user']['id'])) {
 
 <script>
     const videos = <?= json_encode($videos, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>; // Tableau de toutes les vidéos (depuis PHP)
-    const currentUser = <?= isset($_SESSION['user']['pseudo']) ? json_encode($_SESSION['user']['pseudo']) : 'null' ?>; // Pseudo de l’utilisateur connecté
+    const currentUser = <?= isset($_SESSION['user']['pseudo']) ? json_encode($_SESSION['user']['pseudo']) : 'null' ?>; // Pseudo de l'utilisateur connecté
     const currentUserRole = <?= isset($_SESSION['user']['role']) ? json_encode($_SESSION['user']['role']) : 'null' ?>; // Rôle (admin/user)
     const csrfToken = <?= json_encode($_SESSION['csrf_token'] ?? '') ?>; // Token CSRF pour la sécurité
 </script>

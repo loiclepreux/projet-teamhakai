@@ -1,5 +1,5 @@
 <?php
-// ✅ Démarrage de session : indispensable pour accéder aux données de l’utilisateur connecté et aux messages de session.
+// ✅ Démarrage de session : indispensable pour accéder aux données de l'utilisateur connecté et aux messages de session.
 session_start();
 
 // ✅ Connexion sécurisée à la base via PDO.
@@ -10,12 +10,12 @@ if (!isset($_SESSION['user'])) {
     exit(); // ⛔ Stoppe l'exécution du script.
 }
 
-// 🔐 Création d’un token CSRF sécurisé si il n'en n'existe pas.
+// 🔐 Création d'un token CSRF sécurisé si il n'en n'existe pas.
 if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
 
-$id = $_SESSION['user']['id']; // 🔎 On récupère l’ID du membre connecté.
+$id = $_SESSION['user']['id']; // 🔎 On récupère l'ID du membre connecté.
 $stmt = $pdo->prepare("SELECT * FROM utilisateurs WHERE id = ?");
 $stmt->execute([$id]);
 $utilisateur = $stmt->fetch(); // 💾 Récupération des infos en base.
@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $style_jeu = $_POST['style_jeu'] ?? '';
     $plateforme = $_POST['plateforme'] ?? '';
     $photo = $_FILES['photo_profil'] ?? null;
-    $filename = $utilisateur['photo_profil'];  // Par défaut : on garde l’image actuelle.
+    $filename = $utilisateur['photo_profil'];  // Par défaut : on garde l'image actuelle.
 
     $genres_valides     = ['homme', 'femme'];
     $plateformes_valides = ['xbox', 'play', 'pc'];
@@ -96,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <title>Modifier mon profil</title>
 
-    <!-- ✅ Icône de l’onglet (favicon) -->
+    <!-- ✅ Icône de l'onglet (favicon) -->
     <link rel="icon" href="../img/favicon.ico" type="image/x-icon" />
 
     <!-- 🎨 Fichier de styles personnalisé -->

@@ -5,7 +5,7 @@ session_start();
 // ✅ Connexion à la base de données via le fichier config.php..
 require_once 'config.php';
 
-// ✅ Vérifie que l'utilisateur est connecté ET qu’il est administrateur.
+// ✅ Vérifie que l'utilisateur est connecté ET qu'il est administrateur.
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
     die("Accès refusé."); // ⚠️ Accès interdit si non-administrateur.
 }
@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
      // ✅ Récupère le type d'action à effectuer.
     $action = $_POST['action'] ?? '';
 
-    // ✅ Si l'action est "supprimer" ET qu’un id_membre valide est fourni.
+    // ✅ Si l'action est "supprimer" ET qu'un id_membre valide est fourni.
     if ($action === 'supprimer' && $id_membre > 0) {
 
          // ⛔ L'admin ne peut pas supprimer son propre compte.

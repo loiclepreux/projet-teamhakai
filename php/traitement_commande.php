@@ -179,8 +179,8 @@ if ($action === 'send') {
 
     } catch (Exception $e) {
         if (file_exists($pdfPath)) unlink($pdfPath);
-        $_SESSION[‘message’] = "Erreur lors de l’envoi du mail. Veuillez réessayer.";
-        header(‘Location: ../php/boutique.php’);
+        $_SESSION['message'] = "Erreur lors de l'envoi du mail. Veuillez réessayer.";
+        header('Location: ../php/boutique.php');
         exit();
     }
 }

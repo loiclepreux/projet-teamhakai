@@ -143,13 +143,13 @@ document.addEventListener("DOMContentLoaded", () => {
       const closeSignup = document.querySelector(".close-btn");
   
       if (showSignup && signupContainer && closeSignup) {
-        // Ouvrir le formulaire d’inscription au clic.
+        // Ouvrir le formulaire d'inscription au clic.
         showSignup.addEventListener("click", (e) => {
           e.preventDefault();
           signupContainer.classList.add("active");
         });
 
-        // Fermer le formulaire d’inscription.
+        // Fermer le formulaire d'inscription.
         closeSignup.addEventListener("click", () => {
           signupContainer.classList.remove("active");
         });
@@ -250,7 +250,7 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log("BIBLIOTHEQUE JS OK");
     
       const template = document.getElementById("bibliotheque-template")?.content; // Template HTML pour une carte vidéo.
-      const grid = document.querySelector(".bibliotheque-grid"); // Grille d’affichage des vidéos.
+      const grid = document.querySelector(".bibliotheque-grid"); // Grille d'affichage des vidéos.
       const toggleFormBtn = document.getElementById("toggle-form"); // Bouton pour afficher/masquer le formulaire d'ajout.
       const formSection = document.getElementById("video-form"); // Section contenant le formulaire d'ajout de vidéo.
 
@@ -266,14 +266,14 @@ document.addEventListener("DOMContentLoaded", () => {
         
           // insertion vidéo.
           if (isDirectVideo) {
-            // Si c’est un fichier vidéo direct.
+            // Si c'est un fichier vidéo direct.
             const vid = document.createElement("video");
             vid.src = video.url;
             vid.controls = true;
             videoContainer.appendChild(vid);
 
           } else if (isYouTube) {
-            // Si c’est une vidéo YouTube, on extrait l’ID de la vidéo.
+            // Si c'est une vidéo YouTube, on extrait l'ID de la vidéo.
             let videoId;
             if (video.url.includes("youtube.com")) {
               const urlParams = new URLSearchParams(new URL(video.url).search);
@@ -282,7 +282,7 @@ document.addEventListener("DOMContentLoaded", () => {
               videoId = video.url.split("/").pop().split("?")[0];
             }
 
-            // Création de l’iframe YouTube.
+            // Création de l'iframe YouTube.
             const iframe = document.createElement("iframe");
             iframe.src = `https://www.youtube.com/embed/${videoId}`;
             iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
@@ -331,7 +331,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const storageKey = `liked_${videoId}`;
         const csrfToken = document.querySelector('meta[name="csrf-token"]')?.content || ''; // Protection CSRF récupéré depuis le script PHP.
 
-        // Si déjà liké → coloration de l’icône (pré-remplissage).
+        // Si déjà liké → coloration de l'icône (pré-remplissage).
         if (localStorage.getItem(storageKey)) {
           icon.style.color = "#ff004c";
         }
@@ -425,7 +425,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 2000);
     }
 
-    // 🔄 Met à jour la pastille de notification sur l’icône panier.
+    // 🔄 Met à jour la pastille de notification sur l'icône panier.
     function updateNotif() {
         const total = Object.values(panier).reduce((acc, item) => acc + item.quantite, 0);
         notif.textContent = total;

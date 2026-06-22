@@ -32,7 +32,7 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Team HAKAI</title>
 
-    <!-- ✅ Icône de l’onglet (favicon) -->
+    <!-- ✅ Icône de l'onglet (favicon) -->
     <link rel="icon" href="../img/favicon.ico" type="image/x-icon" />
 
     <!-- ✅ Feuilles de styles du site -->
@@ -78,7 +78,7 @@ try {
 
     <!-- Gabarit invisible qui sera cloné via JavaScript -->
     <template id="membre-template">
-        <div class="membre" role="region" aria-label="Carte membre"> <!-- Carte individuelle d’un membre -->
+        <div class="membre" role="region" aria-label="Carte membre"> <!-- Carte individuelle d'un membre -->
         <div class="photo">
         <img src="" alt="photo de profil du membre"> <!-- Image de profil (remplie en JS) -->
         </div>
@@ -120,9 +120,9 @@ try {
 
 <script>
     const membres = <?= json_encode($membres, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>; // Les membres récupérés en PHP, transmis au JS
-    const currentUserRole = <?= json_encode($_SESSION['user']['role'] ?? '') ?>; // Rôle de l’utilisateur connecté
+    const currentUserRole = <?= json_encode($_SESSION['user']['role'] ?? '') ?>; // Rôle de l'utilisateur connecté
     const csrfToken = <?= json_encode($_SESSION['csrf_token'] ?? '') ?>; // Token CSRF pour les requêtes JS
-    const currentUser = <?= json_encode($_SESSION['user']['pseudo'] ?? '') ?>; // Pseudo de l’utilisateur connecté
+    const currentUser = <?= json_encode($_SESSION['user']['pseudo'] ?? '') ?>; // Pseudo de l'utilisateur connecté
 </script>
 
 <!-- Inclusion du fichier JavaScript principal -->

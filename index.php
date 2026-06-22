@@ -18,7 +18,7 @@ require 'php/config.php';
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Team HAKAI</title>
 
-  <!-- ✅ Icône de l’onglet (favicon) -->
+  <!-- ✅ Icône de l'onglet (favicon) -->
   <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
 
   <!-- ✅ Feuilles de styles du site -->
@@ -129,12 +129,12 @@ require 'php/config.php';
     </section>
 
 <!-- ============================= -->
-<!-- ✅ FORMULAIRE D’INSCRIPTION -->
+<!-- ✅ FORMULAIRE D'INSCRIPTION -->
 <!-- ============================= -->
 
     <div class="form-container" aria-label="Formulaire d'inscription">
 
-      <!-- Affichage d’un message d’erreur (ex : pseudo déjà pris) -->
+      <!-- Affichage d'un message d'erreur (ex : pseudo déjà pris) -->
       <?php if (!empty($erreur)) : ?>
         <p class="erreur" style="color: red"><?= htmlspecialchars($erreur) ?></p>
       <?php endif; ?>
@@ -212,14 +212,14 @@ require 'php/config.php';
           </select>
         </fieldset>
 
-        <!-- ✅ Bouton pour valider l’inscription -->
+        <!-- ✅ Bouton pour valider l'inscription -->
         <div id="valider">
             <button type="submit">Valider</button>
         </div>
       </form>
     </div>
 
-    <!-- Section d’intro avec logo et citation -->
+    <!-- Section d'intro avec logo et citation -->
     <section id="introduction">
       <model-viewer alt="logo3D" class="logo" src="img/logo4.glb" shadow-intensity="1" style="width: 45%; height: 25vh" environment-image="neutral" autoplay auto-rotate auto-rotate-delay="0" rotation-per-second="90deg"></model-viewer>
       <h3>
@@ -229,7 +229,7 @@ require 'php/config.php';
       <model-viewer alt="logo3D" class="logo" src="img/logo4.glb" shadow-intensity="1" style="width: 45%; height: 25vh" environment-image="neutral" autoplay auto-rotate auto-rotate-delay="0" rotation-per-second="90deg"></model-viewer>
     </section>
     
-    <!-- Carrousel d’images des jeux COD -->
+    <!-- Carrousel d'images des jeux COD -->
     <section id="carousel" ria-label="Carrousel des jeux Call of Duty">
       <div class="carousel" role="region" aria-live="polite">
         <!-- Chaque image représente un jeu Call of Duty -->
@@ -250,33 +250,33 @@ require 'php/config.php';
     <!-- Section de présentation complète de la communauté -->
     <article id="presentation" role="article">
 
-      <h2>Présentation de l’association HAKAI</h2>
-      <!-- Description du but et de l’esprit de la team -->
+      <h2>Présentation de l'association HAKAI</h2>
+      <!-- Description du but et de l'esprit de la team -->
       <p>
         Nous avons créé le groupe HAKAI pour que chacun puisse toujours
-        trouver quelqu’un avec qui jouer. Notre association regroupe des
+        trouver quelqu'un avec qui jouer. Notre association regroupe des
         joueurs de tous horizons, aux profils variés, avec des horaires de jeu
         différents. Mais nous avons tous un point commun : la passion du jeu
         et le plaisir de partager des moments inoubliables ensemble. Nous
         existons depuis maintenant trois ans et demi, et au fil du temps, nous
         avons construit une véritable communauté soudée. Ici, le respect, la
-        bonne humeur et l’amusement sont nos priorités. Que ce soit en pleine
+        bonne humeur et l'amusement sont nos priorités. Que ce soit en pleine
         action ou entre deux parties, nous aimons échanger, rire, et bien sûr,
         nous chambrer dans une ambiance bon enfant !
       </p>
 
       <h2>Nos activités et événements</h2>
-      <!-- Description des PP (parties privées) et types d’événements organisés -->
+      <!-- Description des PP (parties privées) et types d'événements organisés -->
       <p>
         Notre particularité ? Nous adorons organiser des parties privées (PP),
         qui sont devenues un rituel au sein du groupe. Chaque mois, les
-        modérateurs mettent en place ces sessions spéciales où toute l’équipe
-        HAKAI peut se retrouver. Ces moments sont l’occasion idéale de tester
+        modérateurs mettent en place ces sessions spéciales où toute l'équipe
+        HAKAI peut se retrouver. Ces moments sont l'occasion idéale de tester
         nos compétences, de défier nos amis et de créer des souvenirs
         mémorables. Courir après un membre de la team, un ami, le surprendre
         et décrocher cette élimination tant espérée… Rien de tel pour
         déclencher des fous rires et des échanges pleins de taquineries ! Les
-        PP sont aussi un excellent moyen d’améliorer notre gameplay tout en
+        PP sont aussi un excellent moyen d'améliorer notre gameplay tout en
         restant dans une ambiance détendue et conviviale. En plus des parties
         privées, nous proposons :
       </p>
@@ -289,17 +289,17 @@ require 'php/config.php';
         </li>
         <li>
           Des soirées à thème pour découvrir de nouveaux modes de jeu et
-          s’amuser autrement.
+          s'amuser autrement.
         </li>
       </ul>
 
       <h2>Pourquoi nous rejoindre ?</h2>
       <!-- Avantages de rejoindre la team -->
       <p>
-        Être membre de HAKAI, c’est bien plus que jouer ensemble. C’est faire
-        partie d’une véritable famille de gamers où chacun peut trouver sa
+        Être membre de HAKAI, c'est bien plus que jouer ensemble. C'est faire
+        partie d'une véritable famille de gamers où chacun peut trouver sa
         place. Que tu sois un joueur casual ou un compétiteur acharné, tu
-        trouveras toujours quelqu’un avec qui partager une partie, des
+        trouveras toujours quelqu'un avec qui partager une partie, des
         conseils, ou tout simplement un bon moment de discussion. Avec nous,
         tu pourras :
       </p>
@@ -314,11 +314,11 @@ require 'php/config.php';
       <h2>Comment nous rejoindre ?</h2>
       <!-- Invitation à rejoindre la team via Discord ou autre plateforme -->
       <p>
-        Si tu veux faire partie de l’aventure <strong>HAKAI</strong>, rien de
+        Si tu veux faire partie de l'aventure <strong>HAKAI</strong>, rien de
         plus simple ! Rejoins notre
         <span class="highlight">serveur Discord</span> (ou notre groupe) et
         viens échanger avec nous. Peu importe ton niveau ou ton style de jeu,
-        tant que tu es là pour t’amuser et respecter l’esprit de la
+        tant que tu es là pour t'amuser et respecter l'esprit de la
         communauté, <strong>tu es le bienvenu !</strong>
         <span>Nous sommes présent sur ces plateformes:</span>
 

@@ -1,5 +1,5 @@
 <?php
-// Démarre la session pour gérer l’utilisateur connecté et les variables de session
+// Démarre la session pour gérer l'utilisateur connecté et les variables de session
 session_start();
 
  // Si le token CSRF n'existe pas encore, on le créede manière sécurisée.
@@ -15,8 +15,8 @@ try {
     $stmt = $pdo->query("SELECT * FROM articles ORDER BY date_ajout DESC"); // Requête : récupère tous les articles triés par date d'ajout (du plus récent au plus ancien)
     $articles = $stmt->fetchAll(PDO::FETCH_ASSOC); // On stocke les résultats sous forme de tableau associatif
 } catch (PDOException $e) {
-    $_SESSION[‘message’] = "Une erreur est survenue. Veuillez réessayer.";
-    header(‘Location: ../index.php’);
+    $_SESSION['message'] = "Une erreur est survenue. Veuillez réessayer.";
+    header('Location: ../index.php');
     exit();
 }
 ?>
@@ -28,7 +28,7 @@ try {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Team HAKAI - Boutique</title>
 
-  <!-- ✅ Icône de l’onglet (favicon) -->
+  <!-- ✅ Icône de l'onglet (favicon) -->
   <link rel="icon" href="../img/favicon.ico" type="image/x-icon" />
 
   <!-- ✅ Feuilles de styles du site -->
@@ -74,7 +74,7 @@ try {
 
   <div id="Pan">
     <i class="fa-solid fa-cart-shopping panier" role="button" aria-label="panier"></i> <!-- Icône du panier -->
-    <div class="notif"></div> <!-- Notification de nombre d’articles (remplie dynamiquement en JS) -->
+    <div class="notif"></div> <!-- Notification de nombre d'articles (remplie dynamiquement en JS) -->
   </div>
 
 <!-- Si admin connecté -->
@@ -92,7 +92,7 @@ try {
     </div>
 <?php endif; ?>
 
-  <!-- Grille d’affichage des articles -->
+  <!-- Grille d'affichage des articles -->
   <section class="boutique-grid">
 
   <?php if (!empty($articles)) : ?> <!-- Si des articles sont présents -->
@@ -200,7 +200,7 @@ try {
   </footer>
 </main>
 
-<!-- Fichier JS global qui gère l’ajout/suppression au panier -->
+<!-- Fichier JS global qui gère l'ajout/suppression au panier -->
 <script src="../js/main.js"></script>
 </body>
 </html>

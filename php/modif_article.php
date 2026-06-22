@@ -5,7 +5,7 @@ session_start();
 // ✅ Connexion à la base de données.
 require_once 'config.php';
 
-// 🔐 Génère un token CSRF s’il n’existe pas encore.
+// 🔐 Génère un token CSRF s'il n'existe pas encore.
 if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <title>Modifier un article</title>
 
-    <!-- ✅ Icône de l’onglet (favicon) -->
+    <!-- ✅ Icône de l'onglet (favicon) -->
     <link rel="icon" href="../img/favicon.ico" type="image/x-icon" />
 
     <!-- 🧩 Feuilles de style -->
@@ -101,7 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-- 🔙 Lien retour -->
     <a href="boutique.php" class="retour-btn">← Retour à la boutique</a>
 
-    <h2>✏️ Modifier l’article</h2>
+    <h2>✏️ Modifier l'article</h2>
 
     <!-- 📝 Formulaire de mise à jour -->
     <form method="POST" enctype="multipart/form-data">

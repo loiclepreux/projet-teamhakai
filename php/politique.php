@@ -10,7 +10,7 @@
 
     <h2>1. Introduction</h2>
     <p>
-        La présente politique de confidentialité a pour but d’informer les utilisateurs du site sur la manière dont leurs données personnelles sont collectées, utilisées et protégées.
+        La présente politique de confidentialité a pour but d'informer les utilisateurs du site sur la manière dont leurs données personnelles sont collectées, utilisées et protégées.
     </p>
 
     <h2>2. Données collectées</h2>
@@ -23,19 +23,19 @@
     <p>
         Les données collectées sont utilisées pour :  
         - Gérer les inscriptions, connexions et profils utilisateurs  
-        - Améliorer l’expérience utilisateur  
+        - Améliorer l'expérience utilisateur  
         - Assurer le bon fonctionnement du site  
         - Répondre aux demandes de contact
     </p>
 
     <h2>4. Stockage et sécurité</h2>
     <p>
-        Les données sont stockées sur des serveurs sécurisés hébergés par AlwaysData. Des mesures techniques (SSL, protections serveur, contrôle d’accès) sont mises en œuvre pour protéger les données.
+        Les données sont stockées sur des serveurs sécurisés hébergés par AlwaysData. Des mesures techniques (SSL, protections serveur, contrôle d'accès) sont mises en œuvre pour protéger les données.
     </p>
 
     <h2>5. Partage des données</h2>
     <p>
-        Aucune donnée personnelle n’est vendue ni partagée avec des tiers sans votre consentement, sauf obligation légale ou demande judiciaire.
+        Aucune donnée personnelle n'est vendue ni partagée avec des tiers sans votre consentement, sauf obligation légale ou demande judiciaire.
     </p>
 
     <h2>6. Cookies</h2>
@@ -45,7 +45,7 @@
 
     <h2>7. Vos droits</h2>
     <p>
-        Conformément au RGPD, vous disposez d’un droit d’accès, de rectification, d’opposition et de suppression de vos données personnelles.  
+        Conformément au RGPD, vous disposez d'un droit d'accès, de rectification, d'opposition et de suppression de vos données personnelles.  
         Pour exercer ces droits, contactez-nous à : contact@exemple.com
     </p>
 
@@ -56,5 +56,5 @@
 </section>
 
 <div class="retour-accueil">
-    <a href="../index.php" class="btn-retour">← Retour à l’accueil</a>
+    <a href="../index.php" class="btn-retour">← Retour à l'accueil</a>
 </div>

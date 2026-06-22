@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!empty($pseudo) && !empty($mot_de_passe)) {
         try {
-            // 🔍 Requête pour récupérer l’utilisateur par pseudo.
+            // 🔍 Requête pour récupérer l'utilisateur par pseudo.
             $stmt = $pdo->prepare("SELECT * FROM utilisateurs WHERE pseudo = :pseudo");
             $stmt->execute([':pseudo' => $pseudo]);
             $user = $stmt->fetch();

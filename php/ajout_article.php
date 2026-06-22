@@ -10,7 +10,7 @@ if (empty($_SESSION['csrf_token'])) {
 // ✅ Connexion à la base de données.
 require_once 'config.php';
 
-// ✅ Vérifie que l'utilisateur est connecté et qu’il est administrateur.
+// ✅ Vérifie que l'utilisateur est connecté et qu'il est administrateur.
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
     header('Location: login.php'); // Redirection si non administrateur.
     exit();
@@ -46,7 +46,7 @@ if ($image['error'] === 0 && in_array($image['type'], $allowedTypes) && $image['
     // ✅ Déplace le fichier vers le dossier img/.
     if (move_uploaded_file($image['tmp_name'], $targetPath)) {
 
-         // ✅ Insère l’article dans la base de données.
+         // ✅ Insère l'article dans la base de données.
         $stmt = $pdo->prepare("INSERT INTO articles (nom_article, prix, image) VALUES (?, ?, ?)");
         $stmt->execute([$nom, $prix, $filename]);
 
@@ -69,7 +69,7 @@ if ($image['error'] === 0 && in_array($image['type'], $allowedTypes) && $image['
     <meta charset="UTF-8">
     <title>Ajouter un article</title>
 
-    <!-- ✅ Icône de l’onglet (favicon) -->
+    <!-- ✅ Icône de l'onglet (favicon) -->
     <link rel="icon" href="../img/favicon.ico" type="image/x-icon" />
 
     <!-- ✅ Feuilles de style -->
@@ -99,7 +99,7 @@ if ($image['error'] === 0 && in_array($image['type'], $allowedTypes) && $image['
         <label>Prix (€) :</label>
         <input type="number" name="prix" step="0.01" required>
 
-        <!-- 🖼 Ajout d’image -->
+        <!-- 🖼 Ajout d'image -->
         <label>Image (laisser vide pour conserver l'actuelle) :</label>
         <input type="file" name="image" accept="image/*">
 
