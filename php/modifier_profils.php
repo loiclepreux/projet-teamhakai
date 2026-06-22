@@ -70,8 +70,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         move_uploaded_file($photo['tmp_name'], $upload_dir . $filename);
     }
 
+    $check = $pdo->prepare("SELECT id FROM utilisateurs WHERE (pseudo = ? OR email = ?) AND id != ?");
+    $check->execute([$pseudo, $email, $id]);
+    if ($check->fetch()) {
+        $_SESSION['message'] = "Ce pseudo ou cet email est déjà utilisé par un autre membre.";
+        header('Location: modifier_profils.php');
+        exit();
+    }
+
     $update = $pdo->prepare("UPDATE utilisateurs SET pseudo = ?, email = ?, mot_de_passe = ?, genre = ?, age = ?, biographie = ?, style_jeu = ?, plateforme = ?, photo_profil = ? WHERE id = ?");
-    // 🛠️ Prépare la requête de mise à jour.
     $update->execute([$pseudo, $email, $mot_de_passe, $genre, $age, $biographie, $style_jeu, $plateforme, $filename, $id]);
 
     $_SESSION['user']['pseudo'] = $pseudo;

@@ -103,7 +103,7 @@ require 'php/config.php';
             }
             ?>
         <div class="input-box">
-          <input type="text" value="<?php echo $remember_me ?>" name="username" placeholder="Pseudo Gamertag" required />
+          <input type="text" value="<?= htmlspecialchars($remember_me) ?>" name="username" placeholder="Pseudo Gamertag" required />
           <i class="fa-solid fa-user"></i>
         </div>
 
@@ -206,7 +206,7 @@ require 'php/config.php';
             <option value="rusheur">Rusheur</option>
             <option value="campeur">Campeur</option>
             <option value="sniper">Sniper</option>
-            <option value="tacticient">Tacticien</option>
+            <option value="tacticien">Tacticien</option>
             <option value="ninja">Ninja</option>
             <option value="support">Support</option>
           </select>

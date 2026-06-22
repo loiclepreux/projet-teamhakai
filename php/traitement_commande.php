@@ -31,11 +31,15 @@ $adresse   = trim($_POST['adresse'] ?? '');
 $relais    = trim($_POST['point-relais'] ?? '');
 
 if (empty($nom) || empty($prenom) || empty($email) || empty($telephone) || empty($adresse)) {
-    die("Tous les champs sont obligatoires.");
+    $_SESSION['message'] = "Tous les champs sont obligatoires.";
+    header('Location: ../php/boutique.php');
+    exit();
 }
 
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    die("Adresse email invalide.");
+    $_SESSION['message'] = "Adresse email invalide.";
+    header('Location: ../php/boutique.php');
+    exit();
 }
 
 // Données panier
@@ -43,13 +47,17 @@ $produits  = $_POST['produits'] ?? [];
 $quantites = $_POST['quantites'] ?? [];
 $montants  = $_POST['montants'] ?? [];
 
-if (count($produits) !== count($quantites) || count($produits) !== count($montants)) {
-    die("Erreur dans les données du panier.");
+if (empty($produits) || count($produits) !== count($quantites) || count($produits) !== count($montants)) {
+    $_SESSION['message'] = "Votre panier est vide ou invalide.";
+    header('Location: ../php/boutique.php');
+    exit();
 }
 
 foreach ($quantites as $qte) {
     if (!is_numeric($qte) || $qte <= 0) {
-        die("Quantité invalide.");
+        $_SESSION['message'] = "Quantité invalide dans le panier.";
+        header('Location: ../php/boutique.php');
+        exit();
     }
 }
 
@@ -136,8 +144,7 @@ $Dompdf->loadHtml($html);
 
 // Si on valide la commande et qu'on envoie l'e-mail
 if ($action === 'send') {
-    $pdfPath = __DIR__ . "/commande.pdf";
-    $Dompdf->Output();
+    $pdfPath = __DIR__ . '/commande_' . $numero_commande . '.pdf';
     $Dompdf->render();
     file_put_contents($pdfPath, $Dompdf->output());
 
@@ -171,7 +178,10 @@ if ($action === 'send') {
         exit();
 
     } catch (Exception $e) {
-        echo "Erreur lors de l’envoi du mail : " . $mail->ErrorInfo;
+        if (file_exists($pdfPath)) unlink($pdfPath);
+        $_SESSION[‘message’] = "Erreur lors de l’envoi du mail. Veuillez réessayer.";
+        header(‘Location: ../php/boutique.php’);
+        exit();
     }
 }
 ?>
