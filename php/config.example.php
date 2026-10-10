@@ -5,7 +5,7 @@
 // Copiez ce fichier en config.php et remplissez vos vraies valeurs.
 // NE JAMAIS commiter config.php dans git.
 
-$host    = 'votre-hote-mysql';       // Ex: mysql-xxx.alwaysdata.net
+$host    = 'localhost';              // En ligne sur Hostinger : localhost
 $dbname1 = 'votre_base_de_donnees';  // Ex: utilisateur_hakai
 $username = 'votre_utilisateur';     // Identifiant MySQL
 $password = 'votre_mot_de_passe';    // Mot de passe MySQL
@@ -28,4 +28,3 @@ try {
 } catch (PDOException $e) {
     exit('Erreur de connexion à la base de données.');
 }
-?>

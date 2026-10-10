@@ -30,7 +30,7 @@
 
     <h2>4. Stockage et sécurité</h2>
     <p>
-        Les données sont stockées sur des serveurs sécurisés hébergés par AlwaysData. Des mesures techniques (SSL, protections serveur, contrôle d'accès) sont mises en œuvre pour protéger les données.
+        Les données sont stockées sur des serveurs sécurisés hébergés par Hostinger. Des mesures techniques (SSL, protections serveur, contrôle d'accès) sont mises en œuvre pour protéger les données.
     </p>
 
     <h2>5. Partage des données</h2>
