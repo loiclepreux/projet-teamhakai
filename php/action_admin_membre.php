@@ -1,6 +1,6 @@
 <?php
 // ✅ Démarre la session pour utiliser les variables $_SESSION.
-session_start();
+require_once __DIR__ . '/securite.php'; // session protégée
 
 // ✅ Connexion à la base de données via le fichier config.php..
 require_once 'config.php';

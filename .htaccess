@@ -1,0 +1,26 @@
+# =========================================================
+#  Team Hakai — sécurité du serveur
+# =========================================================
+
+# Pas de liste des fichiers quand on ouvre un dossier
+Options -Indexes
+
+# Toujours en HTTPS
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Fichiers cachés (.env, .git...) : introuvables (sauf .well-known pour le HTTPS)
+RedirectMatch 404 /\.(?!well-known)
+
+# La bibliothèque d'envoi de mails et les fichiers de config : pas accessibles depuis le navigateur
+RedirectMatch 404 ^/(SMTP|PHPMailer-master)(/|$)
+RedirectMatch 404 ^/(composer\.(json|lock)|php/config(\.example)?\.php)$
+
+# En-têtes de sécurité envoyés au navigateur
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+</IfModule>

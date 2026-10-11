@@ -1,6 +1,6 @@
 <?php
 // Démarre la session : nécessaire pour utiliser $_SESSION[]
-session_start();
+require_once __DIR__ . '/securite.php'; // session protégée
 
 // Inclut la connexion PDO à la base de données
 require_once 'config.php';

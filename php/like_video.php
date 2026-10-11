@@ -1,6 +1,6 @@
 <?php
 // ✅ Démarre la session.
-session_start();
+require_once __DIR__ . '/securite.php'; // session protégée
 
 // ✅ Indique que la réponse sera en JSON.
 header('Content-Type: application/json');

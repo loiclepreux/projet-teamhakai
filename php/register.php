@@ -1,6 +1,6 @@
 <?php
 // ✅ Démarrage de la session (obligatoire pour utiliser $_SESSION).
-session_start();
+require_once __DIR__ . '/securite.php'; // session protégée
 
 // ✅ Inclusion du fichier de configuration de la base de données.
 require_once 'config.php';
@@ -40,20 +40,16 @@ if (isset($_SESSION['last_register']) && time() - $_SESSION['last_register'] < 1
         $zombie = isset($_POST['zombie']) ? 'oui' : 'non';
         $campagne = isset($_POST['campagne']) ? 'oui' : 'non';
 
-        $photo = $_FILES['photo_profil'];
+        $photo = $_FILES['photo_profil'] ?? null;
         $filename = '';
 
-if ($photo['error'] === 0) {
-        $allowedTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
-        $mimeType = mime_content_type($photo['tmp_name']);
-        $maxSize = 2 * 1024 * 1024; // 2 Mo
-
-        if (in_array($mimeType, $allowedTypes) && $photo['size'] <= $maxSize) {
-                $extension = pathinfo($photo['name'], PATHINFO_EXTENSION);
-                $filename = uniqid('profil_', true) . '.' . $extension;
-                move_uploaded_file($photo['tmp_name'], '../php/profils/' . $filename);
-        } else {
-                die("Image invalide ou trop volumineuse.");
+// 🔐 Photo de profil : vérifiée et renommée par le serveur (voir securite.php)
+if ($photo && $photo['error'] !== UPLOAD_ERR_NO_FILE) {
+        $filename = enregistrer_image($photo, __DIR__ . '/profils', 'profil_');
+        if ($filename === null) {
+                $_SESSION['message'] = "Image invalide ou trop volumineuse (JPG, PNG, WEBP ou GIF, 2 Mo max).";
+                header('Location: ../index.php');
+                exit();
         }
 }
 

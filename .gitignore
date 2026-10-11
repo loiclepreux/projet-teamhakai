@@ -8,6 +8,7 @@ php/config.php
 # =============================================
 php/profils/*
 !php/profils/.gitkeep
+!php/profils/.htaccess
 
 # =============================================
 # Librairies vendeur (gérées via Composer)
@@ -27,3 +28,6 @@ desktop.ini
 # =============================================
 *.tmp
 *.swp
+
+# Archives (jamais sur GitHub)
+*.zip

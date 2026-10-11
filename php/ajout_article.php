@@ -1,6 +1,6 @@
 <?php
 // ✅ Démarre la session pour accéder à $_SESSION.
-session_start();
+require_once __DIR__ . '/securite.php'; // session protégée
 
 // ✅ Génère un token CSRF s'il n'existe pas encore.
 if (empty($_SESSION['csrf_token'])) {
@@ -32,19 +32,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
      // ✅ Si nom, prix et image sont valides.
     if (!empty($nom) && !empty($prix) && $image && $image['error'] === 0) {
 
-         // 🔐 Sécurité fichier : types autorisés + taille max.
-        $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
-        $maxSize = 2 * 1024 * 1024; // 2 Mo
+         // 🔐 Image vérifiée et renommée par le serveur (voir securite.php)
+    $filename = enregistrer_image($image, __DIR__ . '/../img', 'img_');
 
-if ($image['error'] === 0 && in_array($image['type'], $allowedTypes) && $image['size'] <= $maxSize) {
-
-    // 🧾 Génère un nom de fichier unique.
-    $extension = pathinfo($image['name'], PATHINFO_EXTENSION);
-    $filename = uniqid('img_', true) . '.' . $extension;
-    $targetPath = '../img/' . $filename;
-
-    // ✅ Déplace le fichier vers le dossier img/.
-    if (move_uploaded_file($image['tmp_name'], $targetPath)) {
+    if ($filename !== null) {
 
          // ✅ Insère l'article dans la base de données.
         $stmt = $pdo->prepare("INSERT INTO articles (nom_article, prix, image) VALUES (?, ?, ?)");
@@ -54,11 +45,8 @@ if ($image['error'] === 0 && in_array($image['type'], $allowedTypes) && $image['
         header('Location: boutique.php');
         exit();
     } else {
-        $erreur = "Erreur lors de l'enregistrement du fichier.";
+        $erreur = "Image invalide (JPG, PNG, WEBP ou GIF, 2 Mo max).";
     }
-    } else {
-    $erreur = "Image invalide (format ou taille incorrecte).";
-        }
     }
 }
 ?>

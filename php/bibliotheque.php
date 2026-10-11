@@ -1,6 +1,6 @@
 <?php
 // 🔓 Démarre la session pour accéder aux données utilisateur (id, pseudo, etc.).
-session_start();
+require_once __DIR__ . '/securite.php'; // session protégée
 
 // 🔐 Création du token CSRF si inexistant (sécurité contre les attaques externes).
 if (empty($_SESSION['csrf_token'])) {
@@ -25,7 +25,8 @@ try {
     $videos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     // ❌ Affiche une erreur s'il y a un problème avec la base de données.
-    echo "Erreur : " . $e->getMessage();
+    $videos = [];
+    echo "Erreur : impossible de charger les vidéos.";
 }
 
 // ✅ Vérifie que le formulaire a été envoyé via méthode POST et l'utilisateur connecté.

@@ -1,6 +1,6 @@
 <?php
 // ✅ Démarre la session pour utiliser $_SESSION.
-session_start();
+require_once __DIR__ . '/securite.php'; // session protégée
 
 // ✅ Connexion à la base de données.
 require_once 'config.php';
@@ -36,6 +36,14 @@ if ($_SESSION['login_attempts'] >= $maxAttempts) {
 // ✅ Vérifie si le formulaire a été soumis.
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+    // 🛡️ Blocage par adresse IP (5 erreurs = 15 minutes d'attente)
+    $attente = limite_attente();
+    if ($attente > 0) {
+        $_SESSION['message'] = "⛔ Trop de tentatives. Réessaie dans " . ceil($attente / 60) . " minute(s).";
+        header('Location: ../index.php');
+        exit();
+    }
+
     // ✅ Vérification du token CSRF
     if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
         die("Erreur CSRF : formulaire invalide.");
@@ -54,7 +62,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // 🔑 Vérifie que le mot de passe correspond au hash en base.
             if ($user && password_verify($mot_de_passe, $user['mot_de_passe'])) {
-                // ✅ Connexion réussie
+                // ✅ Connexion réussie : nouvel identifiant de session (anti vol de session)
+                session_regenerate_id(true);
+                limite_reset();
                 $_SESSION['user'] = [
                     'id' => $user['id'],
                     'pseudo' => $user['pseudo'],
@@ -77,6 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } else {
                 $_SESSION['login_attempts']++;
                 $_SESSION['last_attempt_time'] = time();
+                limite_echec();
                 $erreur = "Identifiants incorrects.";
 
                 header('Location: ../index.php'); // ✅ Redirection.

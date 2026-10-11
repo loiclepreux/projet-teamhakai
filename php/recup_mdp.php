@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once __DIR__ . '/securite.php'; // session protégée
 
 require_once __DIR__ . '/../SMTP//PHPMailer/src/PHPMailer.php';
 require_once __DIR__ . '/../SMTP/PHPMailer/src/SMTP.php';
@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $mail->send();
                 $_SESSION['message'] = "📩 Un e-mail a été envoyé à $email.";
             } catch (Exception $e) {
-                $_SESSION['message'] = "❌ Erreur lors de l'envoi de l'e-mail : " . $mail->ErrorInfo;
+                $_SESSION['message'] = "❌ Erreur lors de l'envoi de l'e-mail. Réessaie plus tard.";
             }
         } else {
             $_SESSION['message'] = "❌ Aucune adresse e-mail trouvée.";

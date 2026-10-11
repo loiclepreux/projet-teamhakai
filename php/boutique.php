@@ -1,6 +1,6 @@
 <?php
 // Démarre la session pour gérer l'utilisateur connecté et les variables de session
-session_start();
+require_once __DIR__ . '/securite.php'; // session protégée
 
  // Si le token CSRF n'existe pas encore, on le créede manière sécurisée.
 if (empty($_SESSION['csrf_token'])) {

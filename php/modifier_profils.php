@@ -1,6 +1,6 @@
 <?php
 // ✅ Démarrage de session : indispensable pour accéder aux données de l'utilisateur connecté et aux messages de session.
-session_start();
+require_once __DIR__ . '/securite.php'; // session protégée
 
 // ✅ Connexion sécurisée à la base via PDO.
 require_once 'config.php';
@@ -52,22 +52,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     }
 
-    if ($photo && $photo['error'] === 0) {
-        $allowedTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
-        $mimeType = mime_content_type($photo['tmp_name']);
-        $maxSize  = 2 * 1024 * 1024;
-
-        if (!in_array($mimeType, $allowedTypes) || $photo['size'] > $maxSize) {
-            $_SESSION['message'] = "Image invalide ou trop volumineuse (max 2 Mo).";
+    // 🔐 Nouvelle photo : vérifiée et renommée par le serveur (voir securite.php)
+    if ($photo && $photo['error'] !== UPLOAD_ERR_NO_FILE) {
+        $nouvelle = enregistrer_image($photo, __DIR__ . '/profils', 'profil_');
+        if ($nouvelle === null) {
+            $_SESSION['message'] = "Image invalide ou trop volumineuse (JPG, PNG, WEBP ou GIF, 2 Mo max).";
             header('Location: modifier_profils.php');
             exit();
         }
-
-        $upload_dir = '../php/profils/';
-        if (!is_dir($upload_dir)) mkdir($upload_dir);
-        $ext = pathinfo($photo['name'], PATHINFO_EXTENSION);
-        $filename = 'profil_' . uniqid() . '.' . $ext;
-        move_uploaded_file($photo['tmp_name'], $upload_dir . $filename);
+        $filename = $nouvelle;
     }
 
     $check = $pdo->prepare("SELECT id FROM utilisateurs WHERE (pseudo = ? OR email = ?) AND id != ?");

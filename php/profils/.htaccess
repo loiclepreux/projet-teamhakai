@@ -1,0 +1,6 @@
+# Dossier d'images envoyées par les visiteurs :
+# aucun script ne peut s'exécuter ici, même si quelqu'un réussit à en déposer un.
+<FilesMatch "\.(php\d?|phtml|phar|pht|phps|cgi|pl|py|sh|shtml|htaccess)$">
+    Require all denied
+</FilesMatch>
+Options -Indexes

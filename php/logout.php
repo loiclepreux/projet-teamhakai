@@ -1,6 +1,6 @@
 <?php
 // ✅ Démarre la session pour pouvoir la supprimer ensuite.
-session_start();
+require_once __DIR__ . '/securite.php'; // session protégée
 
 // ✅ Supprime toutes les variables de session (pseudo, id, etc.).
 $_SESSION = [];

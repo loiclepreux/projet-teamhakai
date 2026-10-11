@@ -1,6 +1,6 @@
 <?php
 // ✅ Démarre la session pour utiliser $_SESSION.
-session_start();
+require_once __DIR__ . '/securite.php'; // session protégée
 
 // ✅ Connexion à la base de données.
 require_once 'config.php';
@@ -50,15 +50,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Par défaut, on garde l'image actuelle.
     $filename = $article['image']; 
-    $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
-    $maxSize = 2 * 1024 * 1024; // 2 Mo
-
-    if ($image && $image['error'] === 0) {
-        // Vérifie si le fichier est une image et respecte la taille maximale.
-        if (in_array($image['type'], $allowedTypes) && $image['size'] <= $maxSize) {
-            $extension = pathinfo($image['name'], PATHINFO_EXTENSION);
-            $filename = uniqid('img_', true) . '.' . $extension;
-            move_uploaded_file($image['tmp_name'], '../img/' . $filename);
+    if ($image && $image['error'] !== UPLOAD_ERR_NO_FILE) {
+        // 🔐 Image vérifiée et renommée par le serveur (voir securite.php)
+        $nouvelle = enregistrer_image($image, __DIR__ . '/../img', 'img_');
+        if ($nouvelle !== null) {
+            $filename = $nouvelle;
         } else {
             // Si l'image n'est pas valide, on redirige avec un message d'erreur.
             $_SESSION['message'] = "❌ Image non valide ou trop volumineuse.";
@@ -73,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $_SESSION['message'] = "✅ Article modifié avec succès.";
     } catch (PDOException $e) {
-        $_SESSION['message'] = "❌ Erreur lors de la modification : " . $e->getMessage();
+        $_SESSION['message'] = "❌ Erreur lors de la modification.";
     }
 
     header('Location: boutique.php');
